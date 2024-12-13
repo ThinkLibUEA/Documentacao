@@ -1,63 +1,128 @@
+/* Geral */
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background: #f9f9f9;
-    color: #333;
-  }
-  
-  header {
-    background: #003366;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  main {
-    padding: 20px;
-  }
-  
-  h2, h3 {
-    color: #003366;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-  }
-  
-  table th, table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  table th {
-    background-color: #f4f4f4;
-    color: #333;
-  }
-  
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+}
 
-  pre {
-    background-color: #111117; /* Cor de fundo do código */
-    color: #c5c6c7; /* Cor do texto do código */
-    padding: 15px;
-    border-radius: 10px; /* Arredondamento das bordas */
-    overflow-x: auto; /* Scroll horizontal se necessário */
-    font-family: Consolas, "Courier New", monospace;
-  }
-  
-  
-  code {
-    font-family: Consolas, "Courier New", monospace;
-  }
-  
-  footer {
-    text-align: center;
-    padding: 10px;
-    background: #003366;
-    color: white;
-  }
-  
+/* Contêiner Principal */
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Barra Lateral */
+.sidebar {
+  width: 250px;
+  background-color: #a7a39d67;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.sidebar .logo img {
+  max-width: 150px;
+}
+
+.sidebar .nav {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar .nav li {
+  padding: 10px 20px;
+}
+
+.sidebar .nav li a {
+  text-decoration: none;
+  color: white; /* Texto branco */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar .nav li a img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1); /* Ícone branco por padrão */
+  transition: filter 0.3s;
+}
+
+.sidebar .nav li a.active {
+  background-color: #000000;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.sidebar .nav li a.active img {
+  filter: brightness(1); /* Ícone preto quando selecionado */
+}
+
+.sidebar ul.nav li button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Conteúdo Principal */
+main {
+  margin-left: 250px;
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Código */
+pre {
+  background-color: #111117; /* Cor de fundo do código */
+  color: #c5c6c7; /* Cor do texto do código */
+  padding: 15px;
+  width: max-content;
+  min-width: 500px;
+  border-radius: 10px; /* Arredondamento das bordas */
+  overflow-x: auto; /* Scroll horizontal se necessário */
+  font-family: Consolas, "Courier New", monospace;
+}
+
+/* Ícones Lucide */
+.lucide {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 8px;
+}

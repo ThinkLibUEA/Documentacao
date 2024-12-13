@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ThinkLib Unity Documentation">
+    <meta name="keywords" content="Unity, ThinkLib, Library, Documentation, Game Development">
+    <meta name="author" content="Izaque Rolim, Ícaro Benarrós, Waldecir Martins">
+    <title>ThinkLib Documentation</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            hljs.highlightAll();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Barra Lateral -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="../assets/thinklib_logo.png" alt="ThinkLib Logo" />
+            </div>
+            <ul class="nav">
+                <li><a href="../index.html"><img src="../icons/house.png" alt="Home Icon"> Home</a></li>
+                <li><a href="platform-games.html" class="active"><img src="../icons/gamepad.png" alt="Gamepad Icon">
+                        Jogos de Plataforma</a></li>
+                <li><a href="topdown-games.html"><img src="../icons/map.png" alt="Map Icon"> Jogos TopDown</a></li>
+                <li><a href="point-click-games.html"><img src="../icons/mouse.png" alt="Mouse Icon"> Jogos
+                        Point-and-Click</a></li>
+                <li><a href="tower-defense-games.html"><img src="../icons/shield.png" alt="Shield Icon"> Jogos Tower
+                        Defense</a></li>
+            </ul>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main>
+            <header>
+                <h1>ThinkLib Documentation</h1>
+            </header>
+
+            <section id="platform-movement">
+                <h2>Jogos de Plataforma - Movimentação</h2>
+                <h3>Métodos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Método</th>
+                            <th>Parâmetros</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SetTeclasMovimentacao</td>
+                            <td>List&lt;KeyCode&gt; listaTeclasDireita, List&lt;KeyCode&gt; listaTeclasEsquerda</td>
+                            <td>Configura as listas de teclas que controlam o movimento do personagem para a direita e
+                                para a esquerda.</td>
+                        </tr>
+                        <tr>
+                            <td>SetAnimacaoParado</td>
+                            <td>Animation animacao</td>
+                            <td>Define o clipe de animação exibido enquanto o personagem está parado.</td>
+                        </tr>
+                        <tr>
+                            <td>SetVelocidade</td>
+                            <td>Float velocidade</td>
+                            <td>Especifica a velocidade padrão de movimentação do personagem.</td>
+                        </tr>
+                        <tr>
+                            <td>SetCorrer</td>
+                            <td>KeyCode teclaCorrer, float velocidade, Animation animacao</td>
+                            <td>Define a tecla que o personagem vai correr, a velocidade da corrida e a animação
+                                correspondente.</td>
+                        </tr>
+                        <tr>
+                            <td>SetDash</td>
+                            <td>KeyCode teclaDash, Animation animacao</td>
+                            <td>Define a tecla responsável por executar o dash e a animação correspondente.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Exemplo Prático - Configurando Movimentação</h3>
+                <pre><code class="language-csharp">// Exemplo de Movimentação
+using UnityEngine;
+using System.Collections.Generic;
+
+public class KeyCodeExample : MonoBehaviour
+{
+    public AnimationClip animacaoPersonagem, animacaoCorrer, animacaoDash;
+    public Movimentacao movimentacao;
+
+    void Start()
+    {
+        List<KeyCode> teclasDireita = new List<KeyCode> { KeyCode.D, KeyCode.RightArrow };
+        List<KeyCode> teclasEsquerda = new List<KeyCode> { KeyCode.A, KeyCode.LeftArrow };
+
+        movimentacao.SetTeclasMovimentacao(teclasDireita, teclasEsquerda);
+        movimentacao.SetAnimacaoParado(animacaoPersonagem);
+        movimentacao.SetVelocidade(4f);
+        movimentacao.SetCorrer(KeyCode.LeftShift, 10f, animacaoCorrer); // Opcional
+        movimentacao.SetDash(KeyCode.Q, animacaoDash); // Opcional
+    }
+}</code></pre>
+            </section>
+
+            <section id="platform-jump">
+                <h2>Jogos de Plataforma - Pulo</h2>
+                <h3>Métodos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Método</th>
+                            <th>Parâmetros</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SetTeclaPulo</td>
+                            <td>KeyCode teclaPulo</td>
+                            <td>Define a tecla que o personagem irá efetuar o pulo.</td>
+                        </tr>
+                        <tr>
+                            <td>SetIsPuloDuplo</td>
+                            <td>Boolean isPuloDuplo</td>
+                            <td>Ativa ou desativa a funcionalidade de pulo duplo. Se habilitado, o personagem poderá
+                                realizar um segundo pulo enquanto ainda estiver no ar.</td>
+                        </tr>
+                        <tr>
+                            <td>SetForcaPulo</td>
+                            <td>Float forcaPulo</td>
+                            <td>Define a força do pulo do personagem. Valores maiores resultam em pulos mais altos.</td>
+                        </tr>
+                        <tr>
+                            <td>SetTagChao</td>
+                            <td>String tag</td>
+                            <td>Define a tecla do objeto considerado "chão", é importante para o bom funcionamento do
+                                pulo duplo.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Exemplo Prático - Configurando Pulo</h3>
+                <pre><code class="language-csharp">// Exemplo de Configuração de Pulo
+using UnityEngine;
+
+public class KeyCodeExample : MonoBehaviour
+{
+    public Pulo pulo;
+
+    void Start()
+    {
+        pulo.SetTeclaPulo(KeyCode.Space);
+        pulo.SetIsPuloDuplo(true);
+        pulo.SetForcaPulo(100f);
+        pulo.SetTagChao("ground");
+    }
+}</code></pre>
+            </section>
+            <section id="platform-attack">
+                <h2>Jogos de Plataforma - Ataque com Projetil</h2>
+                <h3>Métodos</h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Método</th>
+                      <th>Parâmetros</th>
+                      <th>Descrição</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>SetProjetil</td>
+                      <td>GameObject objetoDisparado</td>
+                      <td>Define o objeto do jogo que será utilizado como projétil.</td>
+                    </tr>
+                    <tr>
+                      <td>SetTeclaDisparo</td>
+                      <td>KeyCode teclaDisparo</td>
+                      <td>Define a tecla que ativará o disparo do projétil.</td>
+                    </tr>
+                    <tr>
+                      <td>SetPosicaoInicialProjetil</td>
+                      <td>Transform posInicial</td>
+                      <td>Configura a posição inicial do projétil na cena. Essa posição geralmente corresponde ao ponto de origem, como a mão ou arma do personagem.</td>
+                    </tr>
+                    <tr>
+                      <td>SetVelocidadeProjetil</td>
+                      <td>Float velocidadeProjetil</td>
+                      <td>Define a velocidade de movimento do projétil.</td>
+                    </tr>
+                    <tr>
+                      <td>SetTempoMaximoProjetil</td>
+                      <td>Float tempoMaximoProjetil</td>
+                      <td>Determina o tempo máximo, em segundos, que o projétil permanecerá ativo na cena. O valor padrão é 10 segundos, se não ajustado.</td>
+                    </tr>
+                    <tr>
+                      <td>SetAnimacaoProjetil</td>
+                      <td>Animation animacao</td>
+                      <td>Atribui um clipe de animação específico ao projétil.</td>
+                    </tr>
+                    <tr>
+                      <td>SetAnimacaoPersonagem</td>
+                      <td>Animation animacaoPersonagem</td>
+                      <td>Define o clipe de animação aplicado ao personagem no momento do disparo.</td>
+                    </tr>
+                  </tbody>
+                </table>
+        
+                <h3>Exemplo Prático - Configurando Ataque</h3>
+                <pre><code class="language-csharp">using UnityEngine;
+        
+        public class KeyCodeExample : MonoBehaviour
+        {
+            public AnimationClip animacaoProjetil;
+            public AnimationClip animacaoPersonagem;
+            public AtaqueDisparo ataque;
+            public GameObject projetil;
+            public Transform posicaoInicialProjetil;
+        
+            void Start()
+            {
+                ataque.SetProjetil(projetil);
+                ataque.SetTeclaDisparo(KeyCode.Mouse0);
+                ataque.SetPosicaoInicialProjetil(posicaoInicialProjetil);
+                ataque.SetVelocidadeProjetil(5f);
+                ataque.SetTempoMaximoProjetil(30f);
+                ataque.SetAnimacaoProjetil(animacaoProjetil);
+                ataque.SetAnimacaoPersonagem(animacaoPersonagem);
+            }
+        }</code></pre>
+              </section>
+            </section>
+
+            <!-- Conteúdo de Ataque Corpo a Corpo -->
+            <section id="platform-melee-attack">
+              <h2>Jogos de Plataforma - Ataque Corpo a Corpo</h2>
+              <h3>Métodos</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Método</th>
+                    <th>Parâmetros</th>
+                    <th>Descrição</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>SetTeclaAtaque</td>
+                    <td>KeyCode teclaAtaque</td>
+                    <td>Define a tecla de ataque do personagem.</td>
+                  </tr>
+                  <tr>
+                    <td>SetAnimacaoAtaque</td>
+                    <td>Animation animation</td>
+                    <td>Define o clipe de animação aplicado ao personagem no momento de ataque.</td>
+                  </tr>
+                  <tr>
+                    <td>SetRaioAtaque</td>
+                    <td>Float raioAtaque</td>
+                    <td>Estabelece o alcance do ataque do personagem. Um raio maior permite atingir inimigos mais distantes.</td>
+                  </tr>
+                  <tr>
+                    <td>SetTagInimigos</td>
+                    <td>String tag</td>
+                    <td>Especifica a tag dos objetos que sofrerão dano com o ataque.</td>
+                  </tr>
+                </tbody>
+              </table>
+      
+              <h3>Exemplo Prático - Configurando Ataque</h3>
+              <pre><code class="language-csharp">using UnityEngine;
+      using UnityEngine.UI;
+      
+      public class KeyCodeExample : MonoBehaviour
+      {
+          public Text textoMoeda;
+          public AnimationClip animacaoAtaque;
+          public AtaqueDeCorpo ataque;
+      
+          void Start()
+          {
+              ataque.SetTeclaAtaque(KeyCode.Mouse0);
+              ataque.SetAnimacaoAtaque(animacaoAtaque);
+              ataque.SetRaioAtaque(10f);
+              ataque.SetTagInimigos("inimigo");
+          }
+      }</code></pre>
+            </section>
+
+        <!-- Conteúdo do Sistema de Vida -->
+        <section id="platform-life-system">
+          <h2>Jogos de Plataforma - Sistema de Vida</h2>
+          <h3>Métodos</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Método</th>
+                <th>Parâmetros</th>
+                <th>Descrição</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SetBarraDeVida</td>
+                <td>Image barraDeVida</td>
+                <td>Define a imagem que irá ser redimensionada conforme a quantidade de vida.</td>
+              </tr>
+              <tr>
+                <td>SetVidaMaxima</td>
+                <td>int vidaMaxima</td>
+                <td>Define a quantidade máxima de vida do personagem.</td>
+              </tr>
+              <tr>
+                <td>PerderVida</td>
+                <td>int quantidadeDeVidaPerdida</td>
+                <td>Reduz a vida atual do personagem com base na quantidade enviada por parâmetro.</td>
+              </tr>
+              <tr>
+                <td>GanharVida</td>
+                <td>int quantidadeDeVidaRestaurada</td>
+                <td>Aumenta a vida atual do personagem com base na quantidade enviada por parâmetro.</td>
+              </tr>
+              <tr>
+                <td>SetDerrota</td>
+                <td>String funcaoDeDerrota</td>
+                <td>Define o nome do método que será chamado quando a vida do personagem for menor ou igual a zero, podendo executar ações como Game Over, etc.</td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <h3>Atributos</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GetVidaAtual()</td>
+                <td>Retorna um inteiro com a quantidade de vida atual.</td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <h3>Exemplo Prático - Configurando Sistema</h3>
+          <pre><code class="language-csharp">using UnityEngine;
+  using UnityEngine.UI;
+  
+  public class KeyCodeExample : MonoBehaviour
+  {
+      public Image barraDeVida;
+      public Text textoVida;
+      public SistemaDeVidaLib sistema;
+  
+      void Start()
+      {
+          sistema.SetBarraDeVida(barraDeVida);
+          sistema.SetVidaMaxima(100);
+          sistema.SetDerrota("ExibirMensagemDerrota");
+      }
+  
+      void Update()
+      {
+          if (Input.GetKeyDown(KeyCode.Space))
+          {
+              sistema.PerderVida(10f);
+          }
+  
+          if (Input.GetKeyDown(KeyCode.LeftShift))
+          {
+              sistema.GanharVida(10f);
+          }
+  
+          textoVida.text = sistema.GetVidaAtual().ToString(); // Atualiza o texto com a quantidade de vida
+      }
+  
+      void ExibirMensagemDerrota()
+      {
+          Debug.Log("Você perdeu.");
+      }
+  }</code></pre>
+        </section>
+
+            <!-- Outras seções podem ser adicionadas da mesma forma -->
+
+        </main>
+    </div>
+</body>
+
+</html>
