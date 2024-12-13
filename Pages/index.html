@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ThinkLib Unity Documentation">
+  <meta name="keywords" content="Unity, ThinkLib, Library, Documentation, Game Development">
+  <meta name="author" content="Izaque Rolim, Ícaro Benarrós, Waldecir Martins">
+  <title>ThinkLib Documentation - Movimentação</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      hljs.highlightAll();
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>ThinkLib Documentation</h1>
+  </header>
+  
+  <main>
+    <section id="movimentacao">
+      <h2>Jogos de Plataforma - Movimentação</h2>
+
+      <h3>Métodos</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Método</th>
+            <th>Parâmetros</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SetTeclasMovimentacao</td>
+            <td>List&lt;KeyCode&gt; listaTeclasDireita, List&lt;KeyCode&gt; listaTeclasEsquerda</td>
+            <td>Configura as listas de teclas que controlam o movimento do personagem para a direita e para a esquerda.</td>
+          </tr>
+          <tr>
+            <td>SetAnimacaoParado</td>
+            <td>Animation animacao</td>
+            <td>Define o clipe de animação exibido enquanto o personagem está parado.</td>
+          </tr>
+          <tr>
+            <td>SetVelocidade</td>
+            <td>Float velocidade</td>
+            <td>Especifica a velocidade padrão de movimentação do personagem.</td>
+          </tr>
+          <tr>
+            <td>SetCorrer</td>
+            <td>KeyCode teclaCorrer, float velocidade, Animation animacao</td>
+            <td>Define a tecla que o personagem vai correr, a velocidade da corrida e a animação correspondente.</td>
+          </tr>
+          <tr>
+            <td>SetDash</td>
+            <td>KeyCode teclaDash, Animation animacao</td>
+            <td>Define a tecla responsável por executar o dash e a animação correspondente.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Exemplo Prático - Configurando Movimentação</h3>
+      <pre><code class="language-csharp">
+// Exemplo de Movimentação
+using UnityEngine;
+using System.Collections.Generic;
+
+public class KeyCodeExample : MonoBehaviour
+{
+    public AnimationClip animacaoPersonagem, animacaoCorrer, animacaoDash;
+    public Movimentacao movimentacao;
+
+    void Start()
+    {
+        List<KeyCode> teclasDireita = new List<KeyCode> { KeyCode.D, KeyCode.RightArrow };
+        List<KeyCode> teclasEsquerda = new List<KeyCode> { KeyCode.A, KeyCode.LeftArrow };
+
+        movimentacao.SetTeclasMovimentacao(teclasDireita, teclasEsquerda);
+        movimentacao.SetAnimacaoParado(animacaoPersonagem);
+        movimentacao.SetVelocidade(4f);
+        movimentacao.SetCorrer(KeyCode.LeftShift, 10f, animacaoCorrer); // Opcional
+        movimentacao.SetDash(KeyCode.Q, animacaoDash); // Opcional
+    }
+}
+      </code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 ThinkLib Team</p>
+  </footer>
+</body>
+</html>

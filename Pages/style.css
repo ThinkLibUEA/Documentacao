@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+    color: #333;
+  }
+  
+  header {
+    background: #003366;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  h2, h3 {
+    color: #003366;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+
+  pre {
+    background-color: #111117; /* Cor de fundo do código */
+    color: #c5c6c7; /* Cor do texto do código */
+    padding: 15px;
+    border-radius: 10px; /* Arredondamento das bordas */
+    overflow-x: auto; /* Scroll horizontal se necessário */
+    font-family: Consolas, "Courier New", monospace;
+  }
+  
+  
+  code {
+    font-family: Consolas, "Courier New", monospace;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 10px;
+    background: #003366;
+    color: white;
+  }
+  
