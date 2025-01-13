@@ -1,0 +1,23 @@
+# Diretórios e arquivos gerados automaticamente pela Unity
+[Libraries]
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+MemoryCaptures/
+
+# Configurações específicas de IDEs
+.vscode/
+*.csproj
+*.sln
+*.userprefs
+
+# Arquivos de cache e outros do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Configurações locais
+*.swp
+*.lock
